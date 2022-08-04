@@ -1,0 +1,31 @@
+server:
+  port: 8100
+  timeout: 30000
+  
+secureKeyStorageDb:
+  host: 'localhost'
+  port: 5432
+  username: 'postgres'
+  password: 'test'
+
+coin:
+  usePublicNode: 'true'
+  node: 'http://localhost:3101/graphql'
+  name: 'Cardano'
+  symbol: 'ada'
+  unit: 'lovelace'
+  maxUnit: 'ada'
+  originBlockNumber: 0
+  cardanoPuropose: 1852
+  cardanoCoinType: 1815
+  cardanoExternal: 0
+  cardanoChange: 1
+  netWorkTag: 'testnet'
+  
+
+mongodb:
+  url: 'mongodb://localhost:27017/ada_missing_blocks'
+
+natsInternal:
+  url: 'nats://localhost:14222'
+  # url: 'nats://nats-bis-internal:4222'

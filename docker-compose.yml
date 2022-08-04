@@ -1,0 +1,50 @@
+# For local development
+
+version: '3'
+
+services:
+
+  postgres:
+    container_name: sks_db
+    image: postgres
+    expose:
+      - 5432
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=secureKeyStorage
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  nats:
+    container_name: nats
+    image: nats-streaming
+    command:
+      - "-cid"
+      - "bis-internal"
+      - "--max_channels"
+      - "1000"
+      - "-DV"
+    ports:
+      - "14222:4222"
+      - "18222:8222"
+
+  mongodb:
+    container_name: monga
+    image: mongo:latest
+    environment:
+      - MONGODB_DATABASE="blocks"
+    ports:
+      - "27017:27017"
+
+#  pgadmin:
+#    container_name: pgadmin
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: "test@mail.com"
+#      PGADMIN_DEFAULT_PASSWORD: "test"
+#    ports:
+#      - "16543:80"
+#    depends_on:
+#      - postgres
